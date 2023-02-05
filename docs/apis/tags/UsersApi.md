@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**admin_change_user_password**](#admin_change_user_password) | **put** /users/{user_id}/admin-change-user-password | Admin Change User Password
 [**change_user_password**](#change_user_password) | **put** /users/change-user-password | Change User Password
 [**create_user**](#create_user) | **post** /users/ | Create User
+[**download_user_photo**](#download_user_photo) | **get** /users/{user_id}/download-photo | Download User Photo
 [**list_scopes**](#list_scopes) | **get** /users/list-scopes | List Scopes
 [**read_user**](#read_user) | **get** /users/{user_id} | Read User
 [**read_user_me**](#read_user_me) | **get** /users/token | Read User Me
@@ -15,6 +16,7 @@ Method | HTTP request | Description
 [**request_password_change**](#request_password_change) | **post** /users/request-password-change | Request Password Change
 [**resend_invite**](#resend_invite) | **post** /users/resend-invite | Resend Invite
 [**update_user**](#update_user) | **put** /users/{user_id} | Update User
+[**upload_user_photo**](#upload_user_photo) | **put** /users/{user_id}/upload-photo | Upload User Photo
 
 # **admin_change_user_password**
 <a name="admin_change_user_password"></a>
@@ -387,6 +389,113 @@ Type | Description  | Notes
 
 
 #### create_user.ApiResponseFor422
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor422ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor422ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**HTTPValidationError**](../../models/HTTPValidationError.md) |  | 
+
+
+### Authorization
+
+[OAuth2PasswordBearer](../../../README.md#OAuth2PasswordBearer)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+
+# **download_user_photo**
+<a name="download_user_photo"></a>
+> download_user_photo(user_id)
+
+Download User Photo
+
+<strong>Scopes: </strong> me,
+
+### Example
+
+* OAuth Authentication (OAuth2PasswordBearer):
+```python
+import regnify
+from regnify.apis.tags import users_api
+from regnify.model.http_validation_error import HTTPValidationError
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = regnify.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+configuration = regnify.Configuration(
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
+)
+# Enter a context with an instance of the API client
+with regnify.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = users_api.UsersApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'user_id': "user_id_example",
+    }
+    try:
+        # Download User Photo
+        api_response = api_instance.download_user_photo(
+            path_params=path_params,
+        )
+    except regnify.ApiException as e:
+        print("Exception when calling UsersApi->download_user_photo: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+user_id | UserIdSchema | | 
+
+# UserIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, uuid.UUID,  | str,  |  | value must be a uuid
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | [ApiResponseFor200](#download_user_photo.ApiResponseFor200) | Successful Response
+422 | [ApiResponseFor422](#download_user_photo.ApiResponseFor422) | Validation Error
+
+#### download_user_photo.ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | Unset | body was not defined |
+headers | Unset | headers were not defined |
+
+#### download_user_photo.ApiResponseFor422
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -1128,6 +1237,149 @@ Type | Description  | Notes
 
 
 #### update_user.ApiResponseFor422
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor422ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor422ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**HTTPValidationError**](../../models/HTTPValidationError.md) |  | 
+
+
+### Authorization
+
+[OAuth2PasswordBearer](../../../README.md#OAuth2PasswordBearer)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+
+# **upload_user_photo**
+<a name="upload_user_photo"></a>
+> ProfileOut upload_user_photo(user_id)
+
+Upload User Photo
+
+<strong>Scopes: </strong> me,
+
+### Example
+
+* OAuth Authentication (OAuth2PasswordBearer):
+```python
+import regnify
+from regnify.apis.tags import users_api
+from regnify.model.http_validation_error import HTTPValidationError
+from regnify.model.profile_out import ProfileOut
+from regnify.model.body_upload_user_photo_users_user_id_upload_photo_put import BodyUploadUserPhotoUsersUserIdUploadPhotoPut
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = regnify.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: OAuth2PasswordBearer
+configuration = regnify.Configuration(
+    host = "http://localhost",
+    access_token = 'YOUR_ACCESS_TOKEN'
+)
+# Enter a context with an instance of the API client
+with regnify.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = users_api.UsersApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'user_id': "user_id_example",
+    }
+    try:
+        # Upload User Photo
+        api_response = api_instance.upload_user_photo(
+            path_params=path_params,
+        )
+        pprint(api_response)
+    except regnify.ApiException as e:
+        print("Exception when calling UsersApi->upload_user_photo: %s\n" % e)
+
+    # example passing only optional values
+    path_params = {
+        'user_id': "user_id_example",
+    }
+    body = dict(
+        file_to_upload=open('/path/to/file', 'rb'),
+    )
+    try:
+        # Upload User Photo
+        api_response = api_instance.upload_user_photo(
+            path_params=path_params,
+            body=body,
+        )
+        pprint(api_response)
+    except regnify.ApiException as e:
+        print("Exception when calling UsersApi->upload_user_photo: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+body | typing.Union[SchemaForRequestBodyMultipartFormData, Unset] | optional, default is unset |
+path_params | RequestPathParams | |
+content_type | str | optional, default is 'multipart/form-data' | Selects the schema and serialization of the request body
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### body
+
+# SchemaForRequestBodyMultipartFormData
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**BodyUploadUserPhotoUsersUserIdUploadPhotoPut**](../../models/BodyUploadUserPhotoUsersUserIdUploadPhotoPut.md) |  | 
+
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+user_id | UserIdSchema | | 
+
+# UserIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, uuid.UUID,  | str,  |  | value must be a uuid
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | [ApiResponseFor200](#upload_user_photo.ApiResponseFor200) | Successful Response
+422 | [ApiResponseFor422](#upload_user_photo.ApiResponseFor422) | Validation Error
+
+#### upload_user_photo.ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ProfileOut**](../../models/ProfileOut.md) |  | 
+
+
+#### upload_user_photo.ApiResponseFor422
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |

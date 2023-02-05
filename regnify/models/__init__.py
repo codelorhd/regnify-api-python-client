@@ -21,6 +21,7 @@ from regnify.model.many_roles_out import ManyRolesOut
 from regnify.model.many_system_scope_out import ManySystemScopeOut
 from regnify.model.many_user_roles_out import ManyUserRolesOut
 from regnify.model.many_users_in_db import ManyUsersInDB
+from regnify.model.mini_file_object_out import MiniFileObjectOut
 from regnify.model.mini_role_out import MiniRoleOut
 from regnify.model.mini_user_role_out import MiniUserRoleOut
 from regnify.model.order_by import OrderBy

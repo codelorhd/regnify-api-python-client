@@ -55,10 +55,15 @@ class ProfileOut(
             ):
                 pass
             avatar_url = schemas.StrSchema
+        
+            @staticmethod
+            def photo_file() -> typing.Type['MiniFileObjectOut']:
+                return MiniFileObjectOut
             __annotations__ = {
                 "last_name": last_name,
                 "first_name": first_name,
                 "avatar_url": avatar_url,
+                "photo_file": photo_file,
             }
     
     avatar_url: MetaOapg.properties.avatar_url
@@ -75,9 +80,12 @@ class ProfileOut(
     def __getitem__(self, name: typing_extensions.Literal["avatar_url"]) -> MetaOapg.properties.avatar_url: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["photo_file"]) -> 'MiniFileObjectOut': ...
+    
+    @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["last_name", "first_name", "avatar_url", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["last_name", "first_name", "avatar_url", "photo_file", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -92,9 +100,12 @@ class ProfileOut(
     def get_item_oapg(self, name: typing_extensions.Literal["avatar_url"]) -> MetaOapg.properties.avatar_url: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["photo_file"]) -> typing.Union['MiniFileObjectOut', schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["last_name", "first_name", "avatar_url", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["last_name", "first_name", "avatar_url", "photo_file", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -104,6 +115,7 @@ class ProfileOut(
         avatar_url: typing.Union[MetaOapg.properties.avatar_url, str, ],
         last_name: typing.Union[MetaOapg.properties.last_name, str, ],
         first_name: typing.Union[MetaOapg.properties.first_name, str, ],
+        photo_file: typing.Union['MiniFileObjectOut', schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'ProfileOut':
@@ -113,6 +125,9 @@ class ProfileOut(
             avatar_url=avatar_url,
             last_name=last_name,
             first_name=first_name,
+            photo_file=photo_file,
             _configuration=_configuration,
             **kwargs,
         )
+
+from regnify.model.mini_file_object_out import MiniFileObjectOut

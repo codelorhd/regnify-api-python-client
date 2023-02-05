@@ -20,3 +20,5 @@ class PathValues(str, enum.Enum):
     USERS_RESENDINVITE = "/users/resend-invite"
     USERS_USER_ID = "/users/{user_id}"
     USERS_USER_ID_ADMINCHANGEUSERPASSWORD = "/users/{user_id}/admin-change-user-password"
+    USERS_USER_ID_DOWNLOADPHOTO = "/users/{user_id}/download-photo"
+    USERS_USER_ID_UPLOADPHOTO = "/users/{user_id}/upload-photo"

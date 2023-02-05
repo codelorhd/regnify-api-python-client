@@ -15,6 +15,8 @@ from regnify.apis.paths.users_ import Users
 from regnify.apis.paths.users_resend_invite import UsersResendInvite
 from regnify.apis.paths.users_user_id import UsersUserId
 from regnify.apis.paths.users_user_id_admin_change_user_password import UsersUserIdAdminChangeUserPassword
+from regnify.apis.paths.users_user_id_download_photo import UsersUserIdDownloadPhoto
+from regnify.apis.paths.users_user_id_upload_photo import UsersUserIdUploadPhoto
 
 PathToApi = typing_extensions.TypedDict(
     'PathToApi',
@@ -33,6 +35,8 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.USERS_RESENDINVITE: UsersResendInvite,
         PathValues.USERS_USER_ID: UsersUserId,
         PathValues.USERS_USER_ID_ADMINCHANGEUSERPASSWORD: UsersUserIdAdminChangeUserPassword,
+        PathValues.USERS_USER_ID_DOWNLOADPHOTO: UsersUserIdDownloadPhoto,
+        PathValues.USERS_USER_ID_UPLOADPHOTO: UsersUserIdUploadPhoto,
     }
 )
 
@@ -52,5 +56,7 @@ path_to_api = PathToApi(
         PathValues.USERS_RESENDINVITE: UsersResendInvite,
         PathValues.USERS_USER_ID: UsersUserId,
         PathValues.USERS_USER_ID_ADMINCHANGEUSERPASSWORD: UsersUserIdAdminChangeUserPassword,
+        PathValues.USERS_USER_ID_DOWNLOADPHOTO: UsersUserIdDownloadPhoto,
+        PathValues.USERS_USER_ID_UPLOADPHOTO: UsersUserIdUploadPhoto,
     }
 )
